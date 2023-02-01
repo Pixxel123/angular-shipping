@@ -1,0 +1,673 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "standard public schema",
+    "title": "PostgREST API",
+    "version": "10.1.1"
+  },
+  "host": "0.0.0.0:5000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": [
+    "application/json",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "produces": [
+    "application/json",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Introspection"],
+        "summary": "OpenAPI description (this document)",
+        "produces": ["application/openapi+json", "application/json"],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/unserialised_products": {
+      "get": {
+        "tags": ["unserialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.unserialised_products.id" },
+          { "$ref": "#/parameters/rowFilter.unserialised_products.product_id" },
+          {
+            "$ref": "#/parameters/rowFilter.unserialised_products.delivery_id"
+          },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/order" },
+          { "$ref": "#/parameters/range" },
+          { "$ref": "#/parameters/rangeUnit" },
+          { "$ref": "#/parameters/offset" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/preferCount" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": { "$ref": "#/definitions/unserialised_products" },
+              "type": "array"
+            }
+          },
+          "206": { "description": "Partial Content" }
+        }
+      },
+      "post": {
+        "tags": ["unserialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/body.unserialised_products" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "201": { "description": "Created" } }
+      },
+      "delete": {
+        "tags": ["unserialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.unserialised_products.id" },
+          { "$ref": "#/parameters/rowFilter.unserialised_products.product_id" },
+          {
+            "$ref": "#/parameters/rowFilter.unserialised_products.delivery_id"
+          },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      },
+      "patch": {
+        "tags": ["unserialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.unserialised_products.id" },
+          { "$ref": "#/parameters/rowFilter.unserialised_products.product_id" },
+          {
+            "$ref": "#/parameters/rowFilter.unserialised_products.delivery_id"
+          },
+          { "$ref": "#/parameters/body.unserialised_products" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": ["products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.products.id" },
+          { "$ref": "#/parameters/rowFilter.products.product_code" },
+          { "$ref": "#/parameters/rowFilter.products.product_description" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/order" },
+          { "$ref": "#/parameters/range" },
+          { "$ref": "#/parameters/rangeUnit" },
+          { "$ref": "#/parameters/offset" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/preferCount" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": { "$ref": "#/definitions/products" },
+              "type": "array"
+            }
+          },
+          "206": { "description": "Partial Content" }
+        }
+      },
+      "post": {
+        "tags": ["products"],
+        "parameters": [
+          { "$ref": "#/parameters/body.products" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "201": { "description": "Created" } }
+      },
+      "delete": {
+        "tags": ["products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.products.id" },
+          { "$ref": "#/parameters/rowFilter.products.product_code" },
+          { "$ref": "#/parameters/rowFilter.products.product_description" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      },
+      "patch": {
+        "tags": ["products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.products.id" },
+          { "$ref": "#/parameters/rowFilter.products.product_code" },
+          { "$ref": "#/parameters/rowFilter.products.product_description" },
+          { "$ref": "#/parameters/body.products" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      }
+    },
+    "/serialised_products": {
+      "get": {
+        "tags": ["serialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.serialised_products.id" },
+          { "$ref": "#/parameters/rowFilter.serialised_products.delivery_id" },
+          { "$ref": "#/parameters/rowFilter.serialised_products.product_id" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/order" },
+          { "$ref": "#/parameters/range" },
+          { "$ref": "#/parameters/rangeUnit" },
+          { "$ref": "#/parameters/offset" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/preferCount" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": { "$ref": "#/definitions/serialised_products" },
+              "type": "array"
+            }
+          },
+          "206": { "description": "Partial Content" }
+        }
+      },
+      "post": {
+        "tags": ["serialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/body.serialised_products" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "201": { "description": "Created" } }
+      },
+      "delete": {
+        "tags": ["serialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.serialised_products.id" },
+          { "$ref": "#/parameters/rowFilter.serialised_products.delivery_id" },
+          { "$ref": "#/parameters/rowFilter.serialised_products.product_id" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      },
+      "patch": {
+        "tags": ["serialised_products"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.serialised_products.id" },
+          { "$ref": "#/parameters/rowFilter.serialised_products.delivery_id" },
+          { "$ref": "#/parameters/rowFilter.serialised_products.product_id" },
+          { "$ref": "#/parameters/body.serialised_products" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      }
+    },
+    "/customers": {
+      "get": {
+        "tags": ["customers"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.customers.id" },
+          { "$ref": "#/parameters/rowFilter.customers.name" },
+          { "$ref": "#/parameters/rowFilter.customers.email" },
+          { "$ref": "#/parameters/rowFilter.customers.phone" },
+          { "$ref": "#/parameters/rowFilter.customers.address" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/order" },
+          { "$ref": "#/parameters/range" },
+          { "$ref": "#/parameters/rangeUnit" },
+          { "$ref": "#/parameters/offset" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/preferCount" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": { "$ref": "#/definitions/customers" },
+              "type": "array"
+            }
+          },
+          "206": { "description": "Partial Content" }
+        }
+      },
+      "post": {
+        "tags": ["customers"],
+        "parameters": [
+          { "$ref": "#/parameters/body.customers" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "201": { "description": "Created" } }
+      },
+      "delete": {
+        "tags": ["customers"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.customers.id" },
+          { "$ref": "#/parameters/rowFilter.customers.name" },
+          { "$ref": "#/parameters/rowFilter.customers.email" },
+          { "$ref": "#/parameters/rowFilter.customers.phone" },
+          { "$ref": "#/parameters/rowFilter.customers.address" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      },
+      "patch": {
+        "tags": ["customers"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.customers.id" },
+          { "$ref": "#/parameters/rowFilter.customers.name" },
+          { "$ref": "#/parameters/rowFilter.customers.email" },
+          { "$ref": "#/parameters/rowFilter.customers.phone" },
+          { "$ref": "#/parameters/rowFilter.customers.address" },
+          { "$ref": "#/parameters/body.customers" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      }
+    },
+    "/delivery": {
+      "get": {
+        "tags": ["delivery"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.delivery.id" },
+          { "$ref": "#/parameters/rowFilter.delivery.sales_order" },
+          { "$ref": "#/parameters/rowFilter.delivery.date" },
+          { "$ref": "#/parameters/rowFilter.delivery.purchase_order" },
+          { "$ref": "#/parameters/rowFilter.delivery.shipment_location" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/order" },
+          { "$ref": "#/parameters/range" },
+          { "$ref": "#/parameters/rangeUnit" },
+          { "$ref": "#/parameters/offset" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/preferCount" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": { "$ref": "#/definitions/delivery" },
+              "type": "array"
+            }
+          },
+          "206": { "description": "Partial Content" }
+        }
+      },
+      "post": {
+        "tags": ["delivery"],
+        "parameters": [
+          { "$ref": "#/parameters/body.delivery" },
+          { "$ref": "#/parameters/select" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "201": { "description": "Created" } }
+      },
+      "delete": {
+        "tags": ["delivery"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.delivery.id" },
+          { "$ref": "#/parameters/rowFilter.delivery.sales_order" },
+          { "$ref": "#/parameters/rowFilter.delivery.date" },
+          { "$ref": "#/parameters/rowFilter.delivery.purchase_order" },
+          { "$ref": "#/parameters/rowFilter.delivery.shipment_location" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      },
+      "patch": {
+        "tags": ["delivery"],
+        "parameters": [
+          { "$ref": "#/parameters/rowFilter.delivery.id" },
+          { "$ref": "#/parameters/rowFilter.delivery.sales_order" },
+          { "$ref": "#/parameters/rowFilter.delivery.date" },
+          { "$ref": "#/parameters/rowFilter.delivery.purchase_order" },
+          { "$ref": "#/parameters/rowFilter.delivery.shipment_location" },
+          { "$ref": "#/parameters/body.delivery" },
+          { "$ref": "#/parameters/preferReturn" }
+        ],
+        "responses": { "204": { "description": "No Content" } }
+      }
+    }
+  },
+  "definitions": {
+    "unserialised_products": {
+      "required": ["id", "product_id", "delivery_id"],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "product_id": {
+          "description": "Note:\nThis is a Foreign Key to `products.id`.<fk table='products' column='id'/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "delivery_id": {
+          "description": "Note:\nThis is a Foreign Key to `delivery.id`.<fk table='delivery' column='id'/>",
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "products": {
+      "required": ["id", "product_code", "product_description"],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "product_code": { "format": "text", "type": "string" },
+        "product_description": { "format": "text", "type": "string" }
+      },
+      "type": "object"
+    },
+    "serialised_products": {
+      "required": ["id", "delivery_id", "product_id"],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "delivery_id": {
+          "description": "Note:\nThis is a Foreign Key to `delivery.id`.<fk table='delivery' column='id'/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "product_id": {
+          "description": "Note:\nThis is a Foreign Key to `products.id`.<fk table='products' column='id'/>",
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "customers": {
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "name": { "format": "text", "type": "string" },
+        "email": { "format": "text", "type": "string" },
+        "phone": { "format": "text", "type": "string" },
+        "address": { "format": "text", "type": "string" }
+      },
+      "type": "object"
+    },
+    "delivery": {
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "sales_order": { "format": "text", "type": "string" },
+        "date": { "format": "date", "type": "string" },
+        "purchase_order": { "format": "text", "type": "string" },
+        "shipment_location": {
+          "description": "Note:\nThis is a Foreign Key to `customers.id`.<fk table='customers' column='id'/>",
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "parameters": {
+    "preferParams": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": ["params=single-object"],
+      "in": "header",
+      "type": "string"
+    },
+    "preferReturn": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": ["return=representation", "return=minimal", "return=none"],
+      "in": "header",
+      "type": "string"
+    },
+    "preferCount": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": ["count=none"],
+      "in": "header",
+      "type": "string"
+    },
+    "select": {
+      "name": "select",
+      "description": "Filtering Columns",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "on_conflict": {
+      "name": "on_conflict",
+      "description": "On Conflict",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "order": {
+      "name": "order",
+      "description": "Ordering",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "range": {
+      "name": "Range",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "header",
+      "type": "string"
+    },
+    "rangeUnit": {
+      "name": "Range-Unit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "default": "items",
+      "in": "header",
+      "type": "string"
+    },
+    "offset": {
+      "name": "offset",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "limit": {
+      "name": "limit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.unserialised_products": {
+      "name": "unserialised_products",
+      "description": "unserialised_products",
+      "required": false,
+      "in": "body",
+      "schema": { "$ref": "#/definitions/unserialised_products" }
+    },
+    "rowFilter.unserialised_products.id": {
+      "name": "id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.unserialised_products.product_id": {
+      "name": "product_id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.unserialised_products.delivery_id": {
+      "name": "delivery_id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "body.products": {
+      "name": "products",
+      "description": "products",
+      "required": false,
+      "in": "body",
+      "schema": { "$ref": "#/definitions/products" }
+    },
+    "rowFilter.products.id": {
+      "name": "id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.products.product_code": {
+      "name": "product_code",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.products.product_description": {
+      "name": "product_description",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "body.serialised_products": {
+      "name": "serialised_products",
+      "description": "serialised_products",
+      "required": false,
+      "in": "body",
+      "schema": { "$ref": "#/definitions/serialised_products" }
+    },
+    "rowFilter.serialised_products.id": {
+      "name": "id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.serialised_products.delivery_id": {
+      "name": "delivery_id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.serialised_products.product_id": {
+      "name": "product_id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "body.customers": {
+      "name": "customers",
+      "description": "customers",
+      "required": false,
+      "in": "body",
+      "schema": { "$ref": "#/definitions/customers" }
+    },
+    "rowFilter.customers.id": {
+      "name": "id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.customers.name": {
+      "name": "name",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.customers.email": {
+      "name": "email",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.customers.phone": {
+      "name": "phone",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.customers.address": {
+      "name": "address",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "body.delivery": {
+      "name": "delivery",
+      "description": "delivery",
+      "required": false,
+      "in": "body",
+      "schema": { "$ref": "#/definitions/delivery" }
+    },
+    "rowFilter.delivery.id": {
+      "name": "id",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delivery.sales_order": {
+      "name": "sales_order",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delivery.date": {
+      "name": "date",
+      "required": false,
+      "format": "date",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delivery.purchase_order": {
+      "name": "purchase_order",
+      "required": false,
+      "format": "text",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delivery.shipment_location": {
+      "name": "shipment_location",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    }
+  },
+  "externalDocs": {
+    "description": "PostgREST Documentation",
+    "url": "https://postgrest.org/en/v10.1/api.html"
+  }
+}
